@@ -39,6 +39,9 @@ exports.__esModule = true;
 var mongoose_1 = require("mongoose");
 ;
 ;
+/**
+ * SCHEMAS
+ */
 var complimentSchema = new mongoose_1.Schema({
     // FUTURE: change this to the ObjectID
     sender: { type: String, required: true },
@@ -66,9 +69,15 @@ var userSchema = new mongoose_1.Schema({
 }, {
     timestamps: true
 });
+/**
+ * MODELS
+ */
 var Compliment = (0, mongoose_1.model)("Compliment", complimentSchema);
 var Flatter = (0, mongoose_1.model)("Flatter", flatterSchema);
 var User = (0, mongoose_1.model)("User", userSchema);
+/**
+ * CREATE FUNCTIONS
+ */
 function createCompliment(comp) {
     return __awaiter(this, void 0, void 0, function () {
         var compliment;
@@ -114,6 +123,162 @@ function createUser(u) {
         });
     });
 }
+/**
+ * READ FUNCTIONS
+ */
+function findCompliment(comp) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, Compliment.findById(comp._id, function (err, resp) {
+                        console.log("ERROR", err);
+                        return resp;
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+;
+function findFlatter(flat) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, Flatter.findById(flat._id, function (err, resp) {
+                        console.log("ERROR", err);
+                        return resp;
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+;
+function findUser(u) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, User.findById(u._id, function (err, resp) {
+                        console.log("ERROR", err);
+                        return resp;
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+;
+/**
+ * UPDATE FUNCTIONS
+ */
+function updateCompliment(comp) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, Compliment.findByIdAndUpdate(comp._id, function (err, resp) {
+                        console.log("ERROR", err);
+                        return resp;
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+;
+function updateFlatter(flat) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, Flatter.findByIdAndUpdate(flat._id, function (err, resp) {
+                        console.log("ERROR", err);
+                        return resp;
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+;
+function updateUser(u) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, User.findByIdAndUpdate(u._id, function (err, resp) {
+                        console.log("ERR", err);
+                        return resp;
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+;
+/**
+ * DELETE FUNCTIONS
+ */
+function deleteCompliment(comp) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, Compliment.findByIdAndDelete(comp._id, function (err, resp) {
+                        console.log("ERR", err);
+                        return resp;
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+;
+function deleteFlatter(flat) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, Flatter.findByIdAndDelete(flat._id, function (err, resp) {
+                        console.log("ERR", err);
+                        return resp;
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+;
+function deleteUser(u) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, User.findByIdAndDelete(u._id, function (err, resp) {
+                        console.log("ERR", err);
+                        return resp;
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+;
+/**
+ * INIT FUNCTION
+ */
 function run() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
