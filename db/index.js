@@ -37,34 +37,94 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var mongoose_1 = require("mongoose");
+;
+;
 var complimentSchema = new mongoose_1.Schema({
+    // FUTURE: change this to the ObjectID
     sender: { type: String, required: true },
+    // FUTURE: change this to the ObjectID
     receiver: { type: String, required: true }
 }, {
-    // This sets the time as Unix time
-    timestamps: { currentTime: function () { return Math.floor(Date.now() / 1000); } }
+    timestamps: true
+});
+var flatterSchema = new mongoose_1.Schema({
+    // FUTURE: change this to the ObjectID
+    sender: { type: String, required: true },
+    // FUTURE: change this to the ObjectID
+    receiver: { type: String, required: true },
+    imitations: { type: Number, required: true, "default": 0 },
+    sweets: { type: Number, required: true, "default": 0 },
+    bs: { type: Number, required: true, "default": 0 }
+}, {
+    timestamps: true
+});
+var userSchema = new mongoose_1.Schema({
+    permanentName: { type: String, required: true },
+    nickname: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true }
+}, {
+    timestamps: true
 });
 var Compliment = (0, mongoose_1.model)("Compliment", complimentSchema);
-run()["catch"](function (err) { return console.log(err); });
-function run() {
+var Flatter = (0, mongoose_1.model)("Flatter", flatterSchema);
+var User = (0, mongoose_1.model)("User", userSchema);
+function createCompliment(comp) {
     return __awaiter(this, void 0, void 0, function () {
         var compliment;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    compliment = new Compliment(comp);
+                    return [4 /*yield*/, compliment.save()];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function createFlatter(flat) {
+    return __awaiter(this, void 0, void 0, function () {
+        var flatter;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    flatter = new Flatter(flat);
+                    return [4 /*yield*/, flatter.save()];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function createUser(u) {
+    return __awaiter(this, void 0, void 0, function () {
+        var user;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    user = new User(u);
+                    return [4 /*yield*/, user.save()];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function run() {
+    return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, (0, mongoose_1.connect)("mongodb://127.0.0.1:27017/test")];
                 case 1:
                     _a.sent();
-                    compliment = new Compliment({
-                        sender: "sender",
-                        receiver: "receiver"
-                    });
-                    return [4 /*yield*/, compliment.save()];
-                case 2:
-                    _a.sent();
-                    console.log(compliment);
                     return [2 /*return*/];
             }
         });
     });
 }
 ;
+run()["catch"](function (err) { return console.log(err); });
