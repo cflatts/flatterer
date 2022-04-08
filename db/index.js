@@ -161,18 +161,10 @@ function findFlatter(flat) {
 }
 ;
 function findUser(u) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, User.findById(u._id, function (err, resp) {
-                        console.log("ERROR", err);
-                        return resp;
-                    })];
-                case 1:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
-        });
+    User.findOne({ permanentName: u.permanentName }, function (err, resp) {
+        console.log("RESP", resp);
+        console.log("ERROR", err);
+        return resp;
     });
 }
 exports.findUser = findUser;

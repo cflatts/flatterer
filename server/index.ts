@@ -1,27 +1,7 @@
 const express = require("express");
-const MongoClient = require("mongodb").MongoClient;
 import { connectToDb, createUser, findUser, updateUser, deleteUser } from "../db";
 
 const PORT: number = 3000;
-// let testDB;
-
-// function connectToDb() {
-//     MongoClient.connect("mongodb://127.0.0.1:27017/test", (err, client)  => {
-//         if(err) {
-//             console.log(`ERROR: ${err}`);
-//         } else {
-//             console.log("DB CONNECTION SUCCESSFUL");
-//         };
-//         testDB = client.db("test");
-
-//         testDB.collection("compliments").find().toArray((err, result) => {
-//             if (err) throw err;
-
-//             console.log("RESULT", result);
-//         })
-//     });
-// }
-
 
 let app = express();
 
@@ -32,12 +12,14 @@ app.get("/", (req, resp) => {
 /**
  * USER FUNCTIONS
  */
-app.post("/new/:username", (req, resp) => {
-    resp.send("CREATE A USER");
+app.post("/create", (req, resp) => {
+    console.log("BODY", req.body);
+    createUser(req.body).catch( err => console.log(err));
 });
 
 app.get("/users/:username", (req, resp) => {
-    resp.send("GET A USER");
+    const u = findUser({permanentName: req.params.username});
+    resp.send(`The user is: ${req.params.username}`);
 });
 
 app.post("/update/:userID", (req, resp) => {

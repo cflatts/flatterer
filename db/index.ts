@@ -1,4 +1,4 @@
-import { Schema, model, connect } from "mongoose";
+import { Schema, model, connect, Model } from "mongoose";
 
 /**
  * INTERFACES
@@ -105,8 +105,9 @@ async function findFlatter(flat) {
     });
 };
 
-export async function findUser(u) {
-    await User.findById(u._id, (err, resp) => {
+export function findUser(u) {
+    User.findOne({permanentName: u.permanentName}, (err, resp) => {
+        console.log("RESP", resp);
         console.log("ERROR", err);
         return resp;
     });
