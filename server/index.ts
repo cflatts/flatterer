@@ -1,6 +1,27 @@
 const express = require("express");
+const MongoClient = require("mongodb").MongoClient;
+import { connectToDb, createUser, findUser, updateUser, deleteUser } from "../db";
 
 const PORT: number = 3000;
+// let testDB;
+
+// function connectToDb() {
+//     MongoClient.connect("mongodb://127.0.0.1:27017/test", (err, client)  => {
+//         if(err) {
+//             console.log(`ERROR: ${err}`);
+//         } else {
+//             console.log("DB CONNECTION SUCCESSFUL");
+//         };
+//         testDB = client.db("test");
+
+//         testDB.collection("compliments").find().toArray((err, result) => {
+//             if (err) throw err;
+
+//             console.log("RESULT", result);
+//         })
+//     });
+// }
+
 
 let app = express();
 
@@ -31,6 +52,7 @@ function init() {
     app.listen(PORT, () => {
         console.log(`DEV server listening on port: ${PORT}`);
     });
+    connectToDb().catch(err => console.log(err));
 };
 
 init();

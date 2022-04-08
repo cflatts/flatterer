@@ -14,7 +14,7 @@ interface ICompliment {
 }
 
 // This is a publically visible message sent from one user to another
-interface IFlatter{
+interface IFlatter {
     sender: string;
     receiver: string;
     imitations: number;
@@ -82,7 +82,7 @@ async function createFlatter(flat: IFlatter) {
     await flatter.save();
 }
 
-async function createUser(u: IUser) {
+export async function createUser(u: IUser) {
     const user = new User(u);
     await user.save();
 }
@@ -105,7 +105,7 @@ async function findFlatter(flat) {
     });
 };
 
-async function findUser(u) {
+export async function findUser(u) {
     await User.findById(u._id, (err, resp) => {
         console.log("ERROR", err);
         return resp;
@@ -130,7 +130,7 @@ async function updateFlatter(flat) {
     });
 };
 
-async function updateUser(u) {
+export async function updateUser(u) {
     await User.findByIdAndUpdate(u._id, (err, resp) => {
         console.log("ERR", err);
         return resp;
@@ -155,7 +155,7 @@ async function deleteFlatter(flat) {
     });
 };
 
-async function deleteUser(u) {
+export async function deleteUser(u) {
     await User.findByIdAndDelete(u._id, (err, resp) => {
         console.log("ERR", err);
         return resp;
@@ -165,8 +165,7 @@ async function deleteUser(u) {
 /**
  * INIT FUNCTION
  */
-async function run() {
+export async function connectToDb() {
     await connect("mongodb://127.0.0.1:27017/test");
+    console.log("SUCCESSFUL DB CONNECTION");
 };
-
-run().catch(err => console.log(err));

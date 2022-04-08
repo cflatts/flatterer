@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+exports.connectToDb = exports.deleteUser = exports.updateUser = exports.findUser = exports.createUser = void 0;
 var mongoose_1 = require("mongoose");
 ;
 ;
@@ -123,6 +124,7 @@ function createUser(u) {
         });
     });
 }
+exports.createUser = createUser;
 /**
  * READ FUNCTIONS
  */
@@ -173,6 +175,7 @@ function findUser(u) {
         });
     });
 }
+exports.findUser = findUser;
 ;
 /**
  * UPDATE FUNCTIONS
@@ -224,6 +227,7 @@ function updateUser(u) {
         });
     });
 }
+exports.updateUser = updateUser;
 ;
 /**
  * DELETE FUNCTIONS
@@ -275,21 +279,23 @@ function deleteUser(u) {
         });
     });
 }
+exports.deleteUser = deleteUser;
 ;
 /**
  * INIT FUNCTION
  */
-function run() {
+function connectToDb() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, (0, mongoose_1.connect)("mongodb://127.0.0.1:27017/test")];
                 case 1:
                     _a.sent();
+                    console.log("SUCCESSFUL DB CONNECTION");
                     return [2 /*return*/];
             }
         });
     });
 }
+exports.connectToDb = connectToDb;
 ;
-run()["catch"](function (err) { return console.log(err); });
