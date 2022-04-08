@@ -9,7 +9,7 @@
     "author": "Caitlin Flattery",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.17.3",
+        "express": "^5.0.0-beta.1",
         "mongoose": "^6.2.10"
     },
     "devDependencies": {
