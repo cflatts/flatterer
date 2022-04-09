@@ -9,6 +9,10 @@ app.get("/", (req, resp) => {
     resp.send("DEFAULT ROUTE TBD");
 });
 
+app.get("/login", (req, resp) => {
+    resp.send("LOGIN PAGE");
+});
+
 /**
  * USER FUNCTIONS
  */

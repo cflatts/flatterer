@@ -7,6 +7,9 @@ var app = express();
 app.get("/", function (req, resp) {
     resp.send("DEFAULT ROUTE TBD");
 });
+app.get("/login", function (req, resp) {
+    resp.send("LOGIN PAGE");
+});
 /**
  * USER FUNCTIONS
  */
